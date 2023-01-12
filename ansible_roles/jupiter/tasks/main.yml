@@ -1,0 +1,12 @@
+---
+- name: Do installation thing
+  ansible.builtin.shell:
+    cmd: echo installation thing
+  tags:
+    - install
+
+- name: Do configure thing
+  ansible.builtin.shell:
+    cmd: echo configure thing
+  tags:
+    - configure

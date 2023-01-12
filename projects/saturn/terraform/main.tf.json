@@ -1,0 +1,81 @@
+[
+    {
+        "provider": {
+            "aws": {
+                "profile": "development",
+                "region": "us-east-1"
+            }
+        }
+    },
+    {
+        "terraform": {
+            "required_providers": {
+                "aws": {
+                    "source": "hashicorp/aws",
+                    "version": ">= 4.17.1"
+                }
+            },
+            "required_version": ">= 1.2.2"
+        }
+    },
+    {
+        "data": {
+            "aws_vpc": {
+                "this": {
+                    "filter": {
+                        "name": "tag:EnvironmentGroup",
+                        "values": ["${var.tags.EnvironmentGroup}"]
+                    }
+                }
+            }
+        }
+    },
+    {
+        "module": {
+            "aws_subnet_public": {
+                "source": "../../../terraform_modules/aws/subnet_public",
+                "vpc_id": "${data.aws_vpc.this.id}",
+                "cidr_block": "${var.cidr_block}",
+                "availability_zone": "us-east-1"
+            }
+        }
+    },
+
+    {
+        "data": {
+            "aws_ami": {
+                "this": {
+                    "most_recent": true,
+                    "filter": {
+                        "name": "name",
+                        "values": ["saturn*"]
+                    }
+                }
+            }
+        }
+    },
+    {
+        "resource": {
+            "aws_network_interface": {
+                "this": {
+                    "subnet_id": "${module.aws_subnet_public.aws_subnet.id}"
+                }
+            }
+        }
+    },
+    {
+        "resource": {
+            "aws_instance": {
+                "this": {
+                    "ami": "${data.aws_ami.this.id}",
+                    "instance_type": "t2.micro",
+                    "availability_zone": "${var.availability_zone}",
+                    "network_interface": {
+                        "network_interface_id": "${aws_network_interface.this.id}",
+                        "device_index": 0
+                    }
+                }
+            }
+        }
+    }
+]

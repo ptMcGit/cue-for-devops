@@ -1,0 +1,9 @@
+---
+- hosts: saturn
+
+  tasks:
+    - name: Perform configuration.
+      include_role:
+        name: saturn
+      tags:
+        - configure

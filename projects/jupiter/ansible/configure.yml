@@ -1,0 +1,9 @@
+---
+- hosts: jupiter
+
+  tasks:
+    - name: Perform configuration.
+      include_role:
+        name: jupiter
+      tags:
+        - configure

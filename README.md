@@ -1,101 +1,33 @@
-Wikipedia defines a readme as a file that contains information about other files
-in a directory or archive...
-
-As per formatting... stick to the Unix traditions as much as possible, and/or
-use markdown especially for github projects, which renders README.md as html.
-
-    - ASCII characters only, if the README is written in English
-
-    - write it in English if possible, and ship translated version
-      with two-letter language code extension like README.ja
-
-    - 80 characters or less per line
-
-    - single empty line between paragraphs
-
-    - dashes under the headers
-
-    - indent using whitespace
-
-    - (0x20) not tab
-
-
-CUE and DevOPs
+CUE and DevOps
 ==============
 
-Packer
-------
+This is a toy project demonstrating how CUE can be used with tools such as Packer, Ansible, and Terraform.
+It is not meant to advocate for a specific design nor is this design intended to be used in production.
+It is missing major components providing functionality such as load-balancing.
+The emphasis here is to show different problems that CUE can solve.
 
-With Packer we create our AMI.
+Project Overview (before CUE)
+-----------------------------
 
-Supposing we have some data to bind at the time of creation...
+See tag v0
 
-So, we have a `prod` and `qa` AMIs.
-These call Ansible playbooks with appropriate values.
+Note: all `.hcl` files have been converted to `.json` files.
 
-The Latest Version
-------------------
+### Packer
 
-What is it?
------------
+We use an `amazon-ebs` source for both projects. Packer uses a role with the same name located within the project to configure the instance.
 
-### What are the major components? ###
+### Terraform
 
-### File Manifest ###
+We create a public subnet on an existing VPC for an instance that is spun up.
+It finds the AMI created by Packer by name.
 
-How do I use it?
-----------------
+### Ansible
 
-### Configuration ###
+Ansible is used by Packer to configure the AMI.
+It is also used to configure instances after the Terraform plan is run.
 
-### Downloading ###
+Project Overview (after CUE)
+----------------------------
 
-### Installation ###
-
-See Installation
-
-### Basic Usage ###
-
-### Known Bugs ###
-
-### Troubleshooting ###
-
-### Development ###
-
-Documentation
--------------
-
-Authors
--------
-
-See AUTHORS
-
-Contacts
---------
-
-### Bug Reporting ###
-
-### Feature Requests ###
-
-### Submit Patches ###
-
-### Join the Mailing List ###
-
-### Announcements ###
-
-### Join the Community ###
-
-Credits and Acknowledgements
-
-History
--------
-
-Changelog
----------
-
-See Changelog
-
-Legal Notices
--------------
-
-See LICENSE.
+Most of the CUE files reside in the root directory; project-specific files reside in the appropriate project directory.

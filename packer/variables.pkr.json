@@ -1,9 +1,0 @@
-{
-    "variables": {
-        "region": "us-east-1",
-        "tags": {
-            "EnvironmentGroup": "qa",
-            "ProjectName": "fuzzywuzzins"
-        }
-    }
-}

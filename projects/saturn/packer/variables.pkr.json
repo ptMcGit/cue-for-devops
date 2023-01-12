@@ -1,0 +1,9 @@
+{
+    "variables": {
+        "region": "us-east-1",
+        "tags": {
+            "EnvironmentGroup": "development",
+            "ProjectName": "saturn"
+        }
+    }
+}

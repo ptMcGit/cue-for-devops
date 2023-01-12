@@ -1,0 +1,9 @@
+---
+- hosts: jupiter
+
+  tasks:
+    - name: Perform installation.
+      include_role:
+        name: jupiter
+      tags:
+        - install
