@@ -1,0 +1,2 @@
+[{"source":{"amazon-ebs":{"jupiter":{"ami_name":"jupiter-ubuntu","instance_type":"t2.micro","ssh_username":"ubuntu","region":"us-east-1","source_ami_filter":{"filters":{"image-id":"ami-0b9d9398cc54985a5"},"owners":["679593333241"]}}}}},{"build":{"sources":["sources.amazon-ebs.jupiter"],"name":"jupiter","provisioner":{"ansible":{"playbook_file":"./ansible/playbook.yml","ansible_env_vars":["ANSIBLE_ROLES_PATH=../../../ansible_roles"],"extra_arguments":["--user","ubuntu","--tags","install"]}}}}]
+
