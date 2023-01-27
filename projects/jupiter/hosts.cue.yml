@@ -1,0 +1,9 @@
+all:
+  children:
+    jupiter:
+      hosts:
+        jupiter-0:
+          ansible_host: 10.1.1.100
+        jupiter-1:
+          ansible_host: 10.1.1.200
+

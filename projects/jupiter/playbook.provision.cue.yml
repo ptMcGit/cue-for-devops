@@ -1,0 +1,21 @@
+- hosts: jupiter
+  tasks:
+    - name: Test the plan.
+      community.general.terraform:
+        project_path: ./
+        state: planned
+        force_init: true
+      tags:
+        - provision
+    - name: Apply the plan.
+      community.general.terraform:
+        project_path: ./
+        state: present
+      tags:
+        - provision
+    - name: Configure instances.
+      ansible.builtin.include_role:
+        name: jupiter
+      tags:
+        - configure
+

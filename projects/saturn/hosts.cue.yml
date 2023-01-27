@@ -1,0 +1,9 @@
+all:
+  children:
+    saturn:
+      hosts:
+        saturn-0:
+          ansible_host: 10.1.2.100
+        saturn-1:
+          ansible_host: 10.1.2.200
+
