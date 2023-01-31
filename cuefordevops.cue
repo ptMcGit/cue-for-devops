@@ -5,8 +5,8 @@ import (
 	"list"
 )
 
-#AwsProfile: *"development" | "qa" | "prod"
-#AwsRegion:  string | *"us-east-1"
+#AwsProfile: *"development" | "qa" | "prod" | string @tag(awsProfile)
+#AwsRegion:  string | *"us-east-1" | string          @tag(awsRegion)
 
 _allCidrBlocks: [
 	for k, v in terraformConfig {v.cidrBlock},
