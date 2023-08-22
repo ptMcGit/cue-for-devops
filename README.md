@@ -807,18 +807,12 @@ Use the following:
 
 amiValid: true
 
-for tcKey, tcVal in terraformConfig {
-
-	for pcKey, pcVal in packerConfig {
-
-		if (tcKey == pcKey) {
-			for _, builder in pcVal.source {
-				for _, project in builder {
-					amiValid: project.ami_name == tcVal.tagAmiName
-				}
-			}
-		}
-	}
+for tcKey, tcVal in terraformConfig
+for pcKey, pcVal in packerConfig
+if tcKey == pcKey
+for _, builder in pcVal.source
+for _, project in builder {
+	amiValid: project.ami_name == tcVal.tagAmiName
 }
 ```
 
